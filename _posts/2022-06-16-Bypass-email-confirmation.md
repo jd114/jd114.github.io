@@ -25,11 +25,4 @@ As you can see there's the ``resetlink`` that caught my attention and I note dow
 Same as the Resetlink so I just copied the URL and paste and recheck both resetlink and confirmation links are the same or not and they were the same so that's how I have bypassed the confirmation of the email address easy isn't it! 
 I was able to bypass email confirmation without changing the response code or anything just by the observation 
 
-TIP:- Always try to create two accounts or try to check the first correct response note it down to notepad and next time enter the wrong details and check the outputs and responses 
-
-
-
-
-
-
-
+TIP:- Always try to create two accounts or try to check the first correct response note it down to notepad and next time enter the wrong details and check the outputs and responses.
