@@ -44,8 +44,8 @@ social:
   email: onlyformemes68@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/InfosecMecha      # change to your twitter homepage
+    - https://github.com/jd114       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -83,7 +83,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://photos.google.com/u/0/photo/AF1QipPxrVn1eXqH4eHCF5Je4-UWSEN0CM3yuB6MoSpU
+avatar: https://photos.app.goo.gl/feExot7a1kfREp4R8
 
 # boolean type, the global switch for ToC in posts.
 toc: true
