@@ -2,7 +2,7 @@
 title: Blockchain Fundamentals P-1
 date: 2022-06-20 10:54:55 +0888
 categories: [Blockchain, Basics]
-tags: [Blockchain]     # TAG names should always be lowercase
+tags: [blockchain]     # TAG names should always be lowercase
 ---
 
 Hey everyone, In this blog we are going to learn about basic fundamentals of the blockchain 
