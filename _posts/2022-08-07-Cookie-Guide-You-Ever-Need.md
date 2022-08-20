@@ -66,7 +66,7 @@ Example:
 
 5. **Expires Attribute**<br/>
     This attribute is used to set persistent cookies, since the cookie does not expire until the set date is exceeded. This persistent cookie will be used by this browser session and subsequent sessions until the cookie expires. Once the expiration date has exceeded, the browser will delete the cookie. Alternatively, if this attribute is not set, then the cookie is only valid in the current browser session and the cookie will be deleted when the session ends. <br/>
-    For example, if a cookie is set to "; expires=Sun, 31-Jul-2016 13:45:29 GMT" and it is currently July 31st 2014, then the tester should inspect the cookie. If the cookie is a session token that is stored on the user's hard drive then an attacker or local user (such as an admin) who has access to this cookie can access the application by resubmitting this token until the expiration date passes.
+    For example, if a cookie is set to`` "; expires=Sun, 21-Aug-2022 15:45:29 IST" ``and it is currently ***August 20th 2022***, then the tester should inspect the cookie. If the cookie is a session token that is stored on the user's hard drive then an attacker or local user (such as an admin) who has access to this cookie can access the application by resubmitting this token until the expiration date passes.
 
 <h4>Httpflag Bypass</h4><br/>
 ⏺️ This could be Bypassed with TRACE HTTP requests as the response from the server (if this HTTP method is available) will reflect the cookies sent. This technique is called Cross-Site Tracking.<br/>
