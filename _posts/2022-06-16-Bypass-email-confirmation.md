@@ -26,3 +26,7 @@ Same as the Resetlink so I just copied the URL and paste and recheck both resetl
 I was able to bypass email confirmation without changing the response code or anything just by the observation 
 
 TIP:- Always try to create two accounts or try to check the first correct response note it down to notepad and next time enter the wrong details and check the outputs and responses.
+
+<h3>Update</h3>
+Company Accepted the bug and resolve the issue <br/>
+*Reward:- Amazon Pay eGift Cards*   

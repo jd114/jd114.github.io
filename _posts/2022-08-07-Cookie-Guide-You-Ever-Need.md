@@ -1,5 +1,5 @@
 ---
-title: Session Guide you ever need
+title: Cookies and Session Management Guide you ever need Part - 1
 date: 2022-08-07 10:54:55 +0888
 categories: [Bug Bounty, Cookie]
 tags: [cookies,bugbounty]     # TAG names should always be lowercase
@@ -19,10 +19,55 @@ What are cookies used for?
 2. Personalization 
 3. Tracking 
 
-<h3> what are the  types of cookie <h3>
+<h3> what are the  types of cookie </h3>
+------------------------------
 
-1.  Session Cookies: <br/>
-<br/>
-
+1.  **Session Cookies**<br/>
 Temporary cookies or session cookies are used by websites to identify users and the data they provide while navigating the site. For the duration that a person is on a website, session cookies simply keep track of their activity. The cookies are removed when the web browser is closed. These are frequently utilised on e-commerce and shopping websites. 
 
+2.  **Persistent cookies**<br/>
+Unlike session cookies, persistent cookies are stored in a user's browser for an extended period of time, which could be a day, a week, many months, or even years. An expiration date is always present in persistent cookies.
+In Chrome Developer Tools Menu, persistent cookies have an expiration date, whereas session cookies are marked as ‘session’. 
+
+3.  **Zombie cookies**<br/>
+![Desktop View](/assets/img/poc/zombiecookie.jpg){: width="300" height="300" }
+
+Zombie cookies are exactly what they sound like – cookies that come back to life after you thought they were gone. You may have seen them referred to as “Evercookies,” which are unfortunately not the cookie equivalent of a Wonka everlasting gobstopper. Zombie cookies don’t get cleared because they’re hiding outside of your regular cookie storage. Local storage is a prime target (Adobe Flash and Microsoft Silverlight use this a lot), and some HTML5 storage can also be an issue. The living dead cookies can even be in your web history or in RGB color codes that your browser allows into its cache. All a website has to do is find one of the hidden cookies and it can resurrect the others.
+
+### Cookies Attributes 
+-------------------------------
+In order to protect cookie data, the industry has developed means to assist lock down these cookies and reduce their attack surface. Cookies have evolved into a preferred method of storage for online applications because of their high levels of usability and security.
+The means to protect the cookies are:
+Cookie Attributes
+Cookie Prefixes
+
+1. **Secure Attribute**
+
+    The Secure attribute instructs the browser to only deliver the cookie if the request is being sent over a secure channel, such as HTTPS. This will lessen the risk of the cookie being sent in an unencrypted request. If the application can be accessed over both HTTP and HTTPS, an attacker could be able to redirect the user to send their cookie as part of non-protected requests.
+2. **HttpOnly Attribute**
+
+    The HttpOnly attribute is used to help prevent attacks such as session leakage, since it does not allow the cookie to be accessed via a client side script such as JavaScript.
+    This doesn’t limit the whole attack surface of XSS attacks, as an attacker could still send request in place of the user, but limits immensely the reach of XSS attack vectors.<br/>
+    Example:
+   ![Desktop View](/assets/img/poc/Httponly.png){: width="600" height="500" }
+
+    Here is an example of how cookies (which are not using HttpOnly flag) can be easily stolen in a website displaying comments:
+    1. A field named comment is sent to the server and saved in the database.
+    2. When the comments page is loaded, this comment is fetched from db and assigned to a div by innerHtml : <br/>
+    ``document.getElementById("commentDiv").innerHTML = commentFromDbVar;``
+    3. An attacker writes a comment that contains a malicious script which sends all current user cookies to an endpoint (script executes each time comments are loaded)<br/>
+3. **Domain Attribute**<br/>
+    The Domain attribute is used to compare the cookie’s domain against the domain of the server for which the HTTP request is being made. If the domain matches or if it is a subdomain, then the path attribute will be checked next.<br/>
+Example:
+  ![Desktop View](/assets/img/poc/Domain.png){: width="600" height="500" }
+
+4. **Path Attribute**<br/>
+    Verify that the path attribute, just as the Domain attribute, has not been set too loosely. Even if the Domain attribute has been configured as tight as possible, if the path is set to the root directory "/" then it can be vulnerable to less secure applications on the same server. <br/>For example, if the application resides at /myapp/, then verify that the cookies path is set to "; path=/myapp/" and NOT "; path=/" or "; path=/myapp". Notice here that the trailing "/" must be used after myapp. If it is not used, the browser will send the cookie to any path that matches "myapp" such as "myapp-exploited".
+
+5. **Expires Attribute**<br/>
+    This attribute is used to set persistent cookies, since the cookie does not expire until the set date is exceeded. This persistent cookie will be used by this browser session and subsequent sessions until the cookie expires. Once the expiration date has exceeded, the browser will delete the cookie. Alternatively, if this attribute is not set, then the cookie is only valid in the current browser session and the cookie will be deleted when the session ends. <br/>
+    For example, if a cookie is set to "; expires=Sun, 31-Jul-2016 13:45:29 GMT" and it is currently July 31st 2014, then the tester should inspect the cookie. If the cookie is a session token that is stored on the user's hard drive then an attacker or local user (such as an admin) who has access to this cookie can access the application by resubmitting this token until the expiration date passes.
+
+<h4>Httpflag Bypass</h4><br/>
+⏺️ This could be Bypassed with TRACE HTTP requests as the response from the server (if this HTTP method is available) will reflect the cookies sent. This technique is called Cross-Site Tracking.<br/>
+⏺️ It's possible to overwrite HttpOnly cookies by performing a Cookie Jar overflow attack
