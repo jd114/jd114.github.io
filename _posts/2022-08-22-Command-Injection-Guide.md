@@ -30,3 +30,10 @@ An attacker can inject a malicious payload into a template using native template
 
 4. **Insecure Serialization** <br/>
 Improper deserialization can be leveraged to execute arbitrary commands. This is because the user-supplied serialised data is deserialized by the server-side code without being verified.
+
+5. **XML external entity injection (XXE)** <br/>
+If an application uses an XML parser that hasn’t been configured properly to parse user XML input, this can lead to Denial of Service (DoS) attacks, Server-Side Request Forgery (SSRF), and breaches to vulnerable data
+
+<h3> How you can detect command injection attacks </h3>
+
+![Desktop View](/assets/img/poc/Detect.gif){: width="450" height="260" }
